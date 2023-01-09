@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native";
 
 export default function App() {
   const [name, setName] = useState("Harsh");
+  const [people, setPeople] = useState([
+    "Harsh",
+    "Tanya",
+    "Sinha",
+    "Tejasvita",
+    "Anshu",
+    "Anurag",
+    "Abhijeet",
+    "Mridul",
+  ]);
 
   const UpdateNameHandler = () => {
     let oldName = name;
@@ -44,8 +61,18 @@ export default function App() {
             onChangeText={(val) => setName(val)}
           />
         </View>
-        <StatusBar style="auto" />
       </View>
+      <Text>View List of items</Text>
+      <ScrollView>
+        {people.map((item, index) => {
+          return (
+            <View>
+              <Text style={styles.item}>{item}</Text>
+            </View>
+          );
+        })}
+      </ScrollView>
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -55,12 +82,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
   },
   header: {
     backgroundColor: "yellow",
     padding: 20,
     marginBottom: 10,
+    marginTop: 30,
   },
   headerText: {
     fontWeight: "bold",
@@ -80,5 +107,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     padding: 5,
+  },
+  item: {
+    padding: 20,
+    marginTop: 10,
+    backgroundColor: "pink",
   },
 });
