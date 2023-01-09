@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 export default function App() {
   const [name, setName] = useState("Harsh");
@@ -36,7 +36,16 @@ export default function App() {
       <Text style={styles.State}>Lets start learning states</Text>
       <Text>I am {name}</Text>
       <Button title="Update Name" onPress={UpdateNameHandler} />
-      <StatusBar style="auto" />
+      <View style={styles.inputContainer}>
+        <Text> Enter Your name</Text>
+        <View style={styles.input}>
+          <TextInput
+            placeholder="e.g Harsh Sinha"
+            onChangeText={(val) => setName(val)}
+          />
+        </View>
+        <StatusBar style="auto" />
+      </View>
     </View>
   );
 }
@@ -66,5 +75,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontWeight: "bold",
     fontSize: 18,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "black",
+    padding: 5,
   },
 });
