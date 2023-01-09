@@ -7,6 +7,7 @@ import {
   Button,
   TextInput,
   ScrollView,
+  FlatList,
 } from "react-native";
 
 export default function App() {
@@ -34,45 +35,53 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>
-          Starting App Development with React Native{" "}
-        </Text>
-      </View>
-      <View>
-        <Text style={styles.text}>
-          React Native do not support div or normal HTML elements.
-        </Text>
-        <Text style={styles.text}>
-          React Native do not normal text. To write text wrap in Text element.
-        </Text>
-        <Text style={styles.text}>
-          React Native do not support inheritence except for the Text element.
-        </Text>
-      </View>
-      <Text style={styles.State}>Lets start learning states</Text>
-      <Text>I am {name}</Text>
-      <Button title="Update Name" onPress={UpdateNameHandler} />
-      <View style={styles.inputContainer}>
-        <Text> Enter Your name</Text>
-        <View style={styles.input}>
-          <TextInput
-            placeholder="e.g Harsh Sinha"
-            onChangeText={(val) => setName(val)}
-          />
-        </View>
-      </View>
-      <Text>View List of items</Text>
       <ScrollView>
-        {people.map((item, index) => {
-          return (
-            <View>
-              <Text style={styles.item}>{item}</Text>
-            </View>
-          );
-        })}
+        <View style={styles.header}>
+          <Text style={styles.headerText}>
+            Starting App Development with React Native{" "}
+          </Text>
+        </View>
+        <View>
+          <Text style={styles.text}>
+            React Native do not support div or normal HTML elements.
+          </Text>
+          <Text style={styles.text}>
+            React Native do not normal text. To write text wrap in Text element.
+          </Text>
+          <Text style={styles.text}>
+            React Native do not support inheritence except for the Text element.
+          </Text>
+        </View>
+        <Text style={styles.State}>Lets start learning states</Text>
+        <Text>I am {name}</Text>
+        <Button title="Update Name" onPress={UpdateNameHandler} />
+        <View style={styles.inputContainer}>
+          <Text> Enter Your name</Text>
+          <View style={styles.input}>
+            <TextInput
+              placeholder="e.g Harsh Sinha"
+              onChangeText={(val) => setName(val)}
+            />
+          </View>
+        </View>
+        <Text>View List of items</Text>
+        <ScrollView>
+          {people.map((item, index) => {
+            return (
+              <View>
+                <Text style={styles.item}>{item}</Text>
+              </View>
+            );
+          })}
+        </ScrollView>
+        <Text>View List of items Using FlatList</Text>
+        <FlatList
+          numColumns={2}
+          data={people}
+          renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
+        ></FlatList>
+        <StatusBar style="auto" />
       </ScrollView>
-      <StatusBar style="auto" />
     </View>
   );
 }
@@ -112,5 +121,6 @@ const styles = StyleSheet.create({
     padding: 20,
     marginTop: 10,
     backgroundColor: "pink",
+    marginHorizontal: 10,
   },
 });
