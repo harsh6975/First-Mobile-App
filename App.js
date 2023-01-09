@@ -8,6 +8,7 @@ import {
   TextInput,
   ScrollView,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 
 export default function App() {
@@ -78,7 +79,11 @@ export default function App() {
         <FlatList
           numColumns={2}
           data={people}
-          renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => console.log("Your Function")}>
+              <Text style={styles.item}>{item}</Text>
+            </TouchableOpacity>
+          )}
         ></FlatList>
         <StatusBar style="auto" />
       </ScrollView>
